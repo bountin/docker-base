@@ -1,0 +1,21 @@
+FROM node:{{ .NodeVersion }}
+
+MAINTAINER Mantigma GmbH "devops@mantigma.com"
+WORKDIR /app
+
+# Install yarn
+RUN npm install -g yarn
+
+# Install development dependencies
+ONBUILD ENV NODE_ENV development
+ONBUILD ADD ./package.json /app/
+ONBUILD RUN yarn
+
+# Add remaining source code
+ONBUILD COPY . /app
+
+# Build application
+ONBUILD RUN ["npm", "run", "build", "--production"]
+ONBUILD EXPORT build
+
+PUSH mantigma/base-node-builder:{{ .NodeVersion }}

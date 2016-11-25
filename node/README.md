@@ -1,4 +1,4 @@
-# docker-base-node
+# Node Base Image
 
 Base image for Mantigma's node projects.
 

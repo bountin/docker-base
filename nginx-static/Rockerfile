@@ -1,4 +1,4 @@
 FROM nginx:1
 ONBUILD IMPORT build/ /usr/share/nginx/html
 
-PUSH mantigma/base-webpack-static
+PUSH mantigma/base-nginx-static
